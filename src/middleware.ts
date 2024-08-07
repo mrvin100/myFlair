@@ -10,15 +10,19 @@ export default auth(async (request) => {
   const { nextUrl } = request;
 
   const user = (await getUser())?.user;
+  console.log("My usser");
+  
+  console.log(user);
+  
 
   if (user && /auth/.test(nextUrl.pathname))
     return Response.redirect(new URL('/', nextUrl));
 
-  if (
-    (!user && /steps/.test(nextUrl.pathname)) ||
-    (!user && /dashboard/.test(nextUrl.pathname))
-  )
-    return Response.redirect(new URL('/auth/sign-in', nextUrl));
+  // if (
+  //   (!user && /steps/.test(nextUrl.pathname)) ||
+  //   (!user && /dashboard/.test(nextUrl.pathname))
+  // )
+  //   return Response.redirect(new URL('/auth/sign-in', nextUrl));
 
   if (
     (/personal/.test(nextUrl.pathname) && user?.role !== UserRole.PERSONAL) ||

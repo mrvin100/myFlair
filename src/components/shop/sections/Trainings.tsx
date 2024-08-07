@@ -6,7 +6,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
-import { getAllTrainings } from '@/data/training';
+// import { getAllTrainings } from '@/data/training';
 
 import { Button } from '@/components/ui/button';
 import {
@@ -29,7 +29,7 @@ export default function Trainings() {
   const [trainings, setTrainings] = useState<Training[]>([]);
 
   useEffect(() => {
-    (async () => setTrainings(await getAllTrainings()))();
+    // (async () => setTrainings(await getAllTrainings()))();
   }, []);
 
   return (

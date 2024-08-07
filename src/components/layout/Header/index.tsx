@@ -54,6 +54,7 @@ export default function Header({
   variant = 'default',
 }: Readonly<{ variant?: 'default' | 'auth' }>) {
   const { user } = useUserContext();
+console.log(user);
 
   return (
     <header>
