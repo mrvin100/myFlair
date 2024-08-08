@@ -54,19 +54,19 @@ const Workplaces = () => {
         <Dialog key={workplace.id}>
           
           <Card style={{margin:0}}>
+            <CardHeader className='p-0 max-h-[13rem] h-full'>
           <Image
-                className="w-full rounded-md"
+                className="w-full h-full rounded-md object-cover"
                 src={workplace.image}
                 alt={workplace.alt ?? ''}
                 width={1000}
                 height={1000}
               />
-            <CardHeader>
               
             </CardHeader>
 
-            <CardContent>
-              <CardTitle>{workplace.title}</CardTitle>
+            <CardContent className='p-6'>
+              <CardTitle className='mb-3 first-letter:capitalize'>{workplace.title}</CardTitle>
               <CardDescription>
                 A partir de{' '}
                 {Intl.NumberFormat('fr-FR', {
