@@ -1,3 +1,4 @@
+
 import { cn } from '@/lib/utils';
 import {
   type CalendarDate,
@@ -30,6 +31,14 @@ export function CalendarCell({
 
   const { focusProps, isFocusVisible } = useFocusRing();
 
+  // Check if the date is a Sunday
+  const isSunday = date.toDate(getLocalTimeZone()).getDay() === 0;
+
+  // Check if the date is in the past
+  const today = new Date();
+  const dateToCompare = date.toDate(getLocalTimeZone());
+  const isPastDate = dateToCompare < today;
+
   return (
     <td
       {...cellProps}
@@ -45,15 +54,17 @@ export function CalendarCell({
           className={cn(
             'flex size-full items-center justify-center rounded-md',
             'text-gray-12 text-sm font-semibold',
-            isDisabled
+            isSunday || isPastDate
+              ? 'cursor-default text-gray-6' // Apply styles for disabled state
+              : isDisabled
               ? isDateToday
-                ? 'cursor-defaut'
-                : 'text-gray-8 cursor-defaut'
+                ? 'cursor-default'
+                : 'text-gray-8 cursor-default'
               : 'cursor-pointer bg-gray-200',
             isFocusVisible &&
               'group-focus:z-2 ring-gray-12 ring-1 ring-offset-1',
-            isSelected && 'bg-gray-300',
-            !isSelected && !isDisabled && 'hover:ring-gray-12 hover:ring-2',
+            isSelected && !isSunday && !isDateToday && 'bg-gray-300',
+            !isSelected && !isDisabled && !isSunday && !isPastDate && 'hover:ring-gray-12 hover:ring-2',
           )}
         >
           {formattedDate}
@@ -70,3 +81,4 @@ export function CalendarCell({
     </td>
   );
 }
+
