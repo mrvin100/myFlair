@@ -5,6 +5,7 @@ import { useEffect } from 'react';
 import { getBusinessBoosterById } from '@/data/business-booster';
 
 import { Calendar } from '@/components/shop/steps/reservation/Calendar';
+import { Cart } from '@/components/shop/Cart';
 
 export default function ReservationStep({
   params: { slug },
@@ -23,6 +24,7 @@ export default function ReservationStep({
   return (
     <main className="flex h-screen w-screen flex-col items-center justify-center">
       <Calendar />
+      <Cart />
     </main>
   );
 }
